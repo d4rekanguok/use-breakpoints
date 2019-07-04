@@ -1,7 +1,7 @@
-<h1 style="text-align: center;">use-breakpoints</h1>
+<h1 align="center">use-breakpoints</h1>
 
-<p style="text-align: center;">React hook* for setting breakpoints in the browsers with `window.matchMedia`, SSR friendly<br />
-<small style="text-align: center;"> * It's actually not a hook, it's a container component with a context hook</small></p>
+<p align="center">React hook* for setting breakpoints in the browsers with `window.matchMedia`, SSR friendly<br />
+<small align="center"> * It's actually not a hook, it's a container component with a context hook</small></p>
 
 ---
 
