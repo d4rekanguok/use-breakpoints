@@ -13,6 +13,12 @@ This is actually not really a hook, no, it *was* a hook until I realized each ho
 
 ### How
 
+#### Install
+
+```
+yarn add use-zone-breakpoints
+```
+
 Wrap the root of your app with `<ZoneManager />` from `use-zone-breakpoints`. It accepts a single props: An array of breakpoints in pixels.
 
 ```jsx
