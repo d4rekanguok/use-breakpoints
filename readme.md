@@ -55,6 +55,18 @@ const $root = document.getElementById('root')
 render(<App />, $root)
 ```
 
+### Use with Gatsby
+
+Import `<ZoneManager>` & wrap root element in `gatsby-browser.js` & `gatsby-ssr.js`:
+
+```
+export const wrapRootElement = ({ element }) => (
+  <ZoneManager breakpoints={[ 360, 960 ]}>{ element }</ZoneManager>
+)
+```
+
+Then import `useZone` to get zone in any functional components.
+
 ### Use with js-in-css
 
 I keep an array of breakpoints as a constant:

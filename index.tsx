@@ -18,7 +18,7 @@ const getMqLists: GetMediaQueryLists = (bps) => bps.map((bp, i) => {
   )
 })
 
-const ZoneContext = React.createContext<number>(0)
+export const ZoneContext = React.createContext<number>(0)
 export const useZone = () => useContext(ZoneContext)
 
 interface ZoneManagerProps {
