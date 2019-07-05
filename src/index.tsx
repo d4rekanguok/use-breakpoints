@@ -7,9 +7,9 @@ type GetCurrentZone = (FullBreakpoints: number[]) => number
 export const getCurrentZone: GetCurrentZone = bps => {
   if (typeof window === 'undefined') return 0
   const width = window.innerWidth
-  let zone = bps.findIndex(bp => width < bp)
-  if (zone < 0) zone = bps.length
-  return zone
+  let outZone = bps.findIndex(bp => width < bp)
+  if (outZone < 0) outZone = bps.length
+  return outZone - 1
 }
 
 type GetMediaQueryLists = (FullBreakPoints: number[]) => MediaQueryList[]
