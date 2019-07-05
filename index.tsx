@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { useContext, useState, useEffect } from 'react'
 
+type MQListEventListener = (this: MediaQueryList, ev: MediaQueryListEvent) => void
+
 type GetCurrentZone = (FullBreakpoints: number[]) => number
 const getCurrentZone: GetCurrentZone = bps => {
   if (typeof window === 'undefined') return 0
@@ -34,16 +36,17 @@ export const ZoneManager: React.FC<ZoneManagerProps> = ({
   const [zone, setZone] = useState(getCurrentZone(bps))
 
   useEffect(() => {
-    const listenerForZone = (i: number) => (e: MediaQueryListEvent) => {
+    const listenerForZone = (i: number):MQListEventListener => (e) => {
       if (!e.matches) return
       setZone(i)
     }
     
-    const listeners: EventListener[] = []
+    const listeners: MQListEventListener[] = []
     const mqLists = getMqLists(bps)
     mqLists.forEach((mqList, i) => {
       const listener = listenerForZone(i)
       mqList.addListener(listener)
+      listeners.push(listener)
     })
 
     return () => {
