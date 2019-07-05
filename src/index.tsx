@@ -4,11 +4,11 @@ import { useContext, useState, useEffect } from 'react'
 type MQListEventListener = (this: MediaQueryList, ev: MediaQueryListEvent) => void
 
 type GetCurrentZone = (FullBreakpoints: number[]) => number
-const getCurrentZone: GetCurrentZone = bps => {
+export const getCurrentZone: GetCurrentZone = bps => {
   if (typeof window === 'undefined') return 0
   const width = window.innerWidth
   let zone = bps.findIndex(bp => width < bp)
-  if (zone < 0) zone = bps.length - 1
+  if (zone < 0) zone = bps.length
   return zone
 }
 
