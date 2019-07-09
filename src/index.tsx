@@ -3,9 +3,9 @@ import { useContext, useState, useEffect } from 'react'
 
 type MQListEventListener = (this: MediaQueryList, ev: MediaQueryListEvent) => void
 
-type GetCurrentZone = (FullBreakpoints: number[]) => number
-export const getCurrentZone: GetCurrentZone = bps => {
-  if (typeof window === 'undefined') return 0
+type GetCurrentZone = (FullBreakpoints: number[], defaultZone: number) => number
+export const getCurrentZone: GetCurrentZone = (bps, defaultZone) => {
+  if (typeof window === 'undefined') return defaultZone
   const width = window.innerWidth
   let outZone = bps.findIndex(bp => width < bp)
   if (outZone < 0) outZone = bps.length
@@ -24,16 +24,18 @@ export const ZoneContext = React.createContext<number>(0)
 export const useZone = () => useContext(ZoneContext)
 
 interface ZoneManagerProps {
-  breakpoints?: number[]
+  breakpoints?: number[],
+  defaultZone?: number,
 }
 
 // bootstrap default breakpoints
 export const ZoneManager: React.FC<ZoneManagerProps> = ({
   breakpoints = [576, 767, 991, 1199], 
+  defaultZone = 0,
   children 
 }) => {
   const bps = [0, ...breakpoints]
-  const [zone, setZone] = useState(getCurrentZone(bps))
+  const [zone, setZone] = useState(getCurrentZone(bps, defaultZone))
 
   useEffect(() => {
     const listenerForZone = (i: number):MQListEventListener => (e) => {
