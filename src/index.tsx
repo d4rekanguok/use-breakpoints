@@ -15,7 +15,7 @@ type GetMediaQueryLists = (FullBreakPoints: number[]) => MediaQueryList[]
 const getMqLists: GetMediaQueryLists = (bps) => bps.map((bp, i) => {
   const nextBp = bps[i + 1]
   return window.matchMedia(
-    `(min-width: ${bp}px) ${nextBp ? `and (max-width: ${nextBp}px)` : ''}`
+    `(min-width: ${bp}px) ${nextBp ? `and (max-width: ${nextBp - 1}px)` : ''}`
   )
 })
 
