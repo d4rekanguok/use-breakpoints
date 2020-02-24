@@ -5,6 +5,12 @@
 
 ---
 
+### Acknowledgement
+
+Huge thanks to @chpio for [fixing bugs & improve the code](https://github.com/d4rekanguok/use-zone-breakpoints/pull/8).
+
+---
+
 ### Why
 
 I needed to detect browser's width on resize when developing a fairly animation-heavy website with [Gatsby.js](https://gatsbyjs.org). However I realized that I only need to know which 'zone' (area between breakpoints) the browser is in & it made more sense to use `window.matchMedia` instead (Plus it's more fun to try out a 'new' API).
