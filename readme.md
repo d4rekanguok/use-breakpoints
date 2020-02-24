@@ -7,7 +7,7 @@
 
 ### Acknowledgement
 
-Huge thanks to @chpio for [fixing bugs & improve the code](https://github.com/d4rekanguok/use-zone-breakpoints/pull/8).
+Huge thanks to [@chpio](https://github.com/chpio) for [fixing bugs & improve the code](https://github.com/d4rekanguok/use-zone-breakpoints/pull/8).
 
 ---
 
@@ -35,7 +35,7 @@ Wrap the root of your app with `<ZoneManager />` from `use-zone-breakpoints`. It
 
 It'll create zones in between these breakpoints. For example, these are the zone created with the breakpoints above:
 
-breakpoints | 0 -> 576 | 576 -> 767 | 767 -> 991 | 991 -> 1199 | 1199 -> ∞    
+breakpoints | 0 -> 575 | 576 -> 766 | 767 -> 990 | 991 -> 1198 | 1199 -> ∞    
 --:         |:-:       |:-:         |:-:          |:-:          |:-:
 zone        | 0        | 1          | 2           | 3           | 4
 
