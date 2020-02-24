@@ -57,7 +57,10 @@ export const ZoneManager: React.FC<ZoneManagerProps> = ({
     return () => {
       mqLists.forEach((mqList, i) => mqList.removeListener(listeners[i]))
     }
-  }, [bps])
+  },
+  
+  // We use the whole bps array as deps. Using `[bps]` would re-execute `useEffect` on each render
+  bps)
 
   return <ZoneContext.Provider value={zone}>{children}</ZoneContext.Provider>
 }
