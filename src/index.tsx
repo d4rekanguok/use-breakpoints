@@ -3,9 +3,8 @@ import { useContext, useState, useEffect } from 'react'
 
 type MQListEventListener = (this: MediaQueryList, ev: MediaQueryListEvent) => void
 
-type GetCurrentZone = (FullBreakpoints: number[], defaultZone: number) => number
-export const getCurrentZone: GetCurrentZone = (bps, defaultZone) => {
-  if (typeof window === 'undefined') return defaultZone
+type GetCurrentZone = (FullBreakpoints: number[]) => number
+export const getCurrentZone: GetCurrentZone = (bps) => {
   const width = window.innerWidth
   let outZone = bps.findIndex(bp => width < bp)
   if (outZone < 0) outZone = bps.length
@@ -35,9 +34,13 @@ export const ZoneManager: React.FC<ZoneManagerProps> = ({
   children 
 }) => {
   const bps = [0, ...breakpoints]
-  const [zone, setZone] = useState(getCurrentZone(bps, defaultZone))
+  // SSR renders without calling `useEffect` hooks (thus falling back to `defaultZone`), that's
+  // why we need to render with the `defaultZone` on the client first to re-hydrate the dom
+  const [zone, setZone] = useState(defaultZone)
 
   useEffect(() => {
+    setZone(getCurrentZone(bps))
+
     const listenerForZone = (i: number):MQListEventListener => (e) => {
       if (!e.matches) return
       setZone(i)
